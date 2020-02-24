@@ -1,21 +1,35 @@
-import * as React from "react";
-import Layout from "../components/Layout";
-import Button from "../components/Button";
-import { H1, H2 } from "../components/Headlines";
-import { colors } from "../theme";
+// Import FirebaseAuth and firebase.
+import React from "react";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import fire from "../fire";
 
-const Signup: React.FunctionComponent<{}> = () => {
-  return (
-    <Layout backgroundColor="#000">
-      <H1 color={colors.white}>New here?</H1>
-      <Button
-        title={"Sign up"}
-        onClick={() => console.log("Signup")}
-        backgroundColor={colors.blue}
-        color={colors.white}
-      />
-    </Layout>
-  );
-};
+// // Configure FirebaseUI.
+// const uiConfig = {
+//   // Popup signin flow rather than redirect flow.
+//   signInFlow: "popup",
+//   // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
+//   signInSuccessUrl: "/signedIn",
+//   // We will display Google and Facebook as auth providers.
+//   signInOptions: [
+//     fire.auth.GoogleAuthProvider.PROVIDER_ID,
+//     fire.auth.FacebookAuthProvider.PROVIDER_ID
+//   ]
+// };
 
+// class SignInScreen extends React.Component {
+//   render() {
+//     return (
+//       <div>
+//         <h1>My App</h1>
+//         <p>Please sign-in:</p>
+//         <StyledFirebaseAuth
+//           uiConfig={uiConfig}
+//           firebaseAuth={fire.auth()}
+//         />
+//       </div>
+//     );
+//   }
+// }
+
+const Signup = () => <div></div>;
 export default Signup;
