@@ -4,6 +4,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import Tag from "./Tag";
 import { colors, fontSizes } from "../theme";
+import Space from "./Space";
 
 interface Props {
   edit: boolean;
@@ -53,7 +54,7 @@ const EditableTags: React.FunctionComponent<Props> = ({
           onChange={e => setValue(e.target.value)}
         />
       )}
-      <Break />
+      <Space />
     </TagBar>
   );
 };
@@ -61,7 +62,7 @@ const EditableTags: React.FunctionComponent<Props> = ({
 const TagBar = styled.div<{ edit: boolean }>`
   display: flex;
   flex-wrap: wrap;
-  padding: 10px;
+  padding: ${p => (p.edit ? "10px" : "10px 0px")};
   background-color: ${p => (p.edit ? colors.lightgray : "transparent")};
 `;
 
@@ -69,11 +70,7 @@ const StyledInput = styled.input`
   border: 0px solid transparent;
   background-color: ${colors.lightgray};
   font-size: ${fontSizes.small};
-`;
-
-const Break = styled.div`
-  float: none;
-  clear: both;
+  height: 28px;
 `;
 
 EditableTags.propTypes = {

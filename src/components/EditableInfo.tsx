@@ -19,7 +19,7 @@ const EditableInfo: React.FunctionComponent<Props> = ({
   setDescription
 }) => {
   return (
-    <div>
+    <Wrapper>
       <H2>{headline}</H2>
       {edit ? (
         <StyledInput
@@ -29,7 +29,7 @@ const EditableInfo: React.FunctionComponent<Props> = ({
       ) : (
         <Description>{description}</Description>
       )}
-    </div>
+    </Wrapper>
   );
 };
 
@@ -40,6 +40,11 @@ const StyledInput = styled.textarea`
   background-color: ${colors.lightgray};
   font-size: ${fontSizes.small};
   padding: 10px;
+  color: ${colors.darkgray};
+`;
+
+const Wrapper = styled.div`
+  padding: 10px 0;
 `;
 
 EditableInfo.propTypes = {

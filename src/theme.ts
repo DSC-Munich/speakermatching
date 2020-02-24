@@ -5,12 +5,12 @@ export const colors = {
   green: "#33a853",
   gray: "lightgray",
   white: "#fff",
-  darkgray: "#000",
+  darkgray: "#737373",
   lightgray: "#eee"
 };
 
 export const fontSizes = {
-  large: "25px",
-  medium: "20px",
-  small: "13px"
+  large: "35px",
+  medium: "23px",
+  small: "15px"
 };
