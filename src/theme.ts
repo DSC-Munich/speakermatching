@@ -6,3 +6,7 @@ export const colors = {
   gray: "lightgray",
   white: "#fff"
 };
+
+export const fontSizes = {
+  large: "25px"
+};

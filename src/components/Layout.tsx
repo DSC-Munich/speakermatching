@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 interface Props {
   backgroundColor?: string;
-  children: React.ReactChild;
+  children: React.ReactChild | React.ReactChild[];
 }
 
 const Layout: React.FunctionComponent<Props> = ({
@@ -24,7 +24,7 @@ Layout.propTypes = {
 };
 
 const Wrapper = styled.div<{ backgroundColor?: string }>`
-  backgroundcolor: ${({ backgroundColor }) => backgroundColor};
+  background-color: ${({ backgroundColor }) => backgroundColor};
   position: relative;
 `;
 
