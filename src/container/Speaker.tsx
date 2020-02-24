@@ -9,6 +9,7 @@ import EditableInfo from "../components/EditableInfo";
 import Button from "../components/Button";
 import styled from "styled-components";
 import { colors } from "../theme";
+import EditableTags from "../components/EditableTags";
 
 // TODO: Connect to firebase
 const getSpeakerData: (speakerId: string) => any = speakerId => {
@@ -22,8 +23,8 @@ const getSpeakerData: (speakerId: string) => any = speakerId => {
     imageUrl:
       "https://imgix.bustle.com/uploads/image/2018/5/9/fa2d3d8d-9b6c-4df4-af95-f4fa760e3c5c-2t4a9501.JPG?w=970&h=546&fit=crop&crop=faces&auto=format&q=70",
     topics: [
-      { name: "Topic1", color: "red" },
-      { name: "Topic2", color: "blue" }
+      { value: "Topic1", color: "red" },
+      { value: "Topic2", color: "blue" }
     ]
   };
 };
@@ -38,7 +39,10 @@ const App: React.FunctionComponent<{}> = () => {
   const [name, setName] = useState();
   const [about, setAbout] = useState();
   const [experience, setExperience] = useState();
-  const [topics, setTopics] = useState([]);
+  const [topics, setTopics]: [
+    { value: string; color: string }[],
+    any
+  ] = useState([]);
   const [imageUrl, setImageUrl] = useState();
 
   const { speakerId } = useParams();
@@ -77,16 +81,7 @@ const App: React.FunctionComponent<{}> = () => {
       />
 
       <H2>I&apos;m condifent to speak about these topics:</H2>
-      <TagBar>
-        {topics &&
-          topics.map(
-            (t: { color: string | undefined; name: React.ReactNode }) => (
-              <Tag key={Math.random()} color={t.color}>
-                {t.name}
-              </Tag>
-            )
-          )}
-      </TagBar>
+      <EditableTags tags={topics} edit={edit} setTags={setTopics} />
 
       <Button
         title={edit ? "Save" : "Edit"}
@@ -97,13 +92,5 @@ const App: React.FunctionComponent<{}> = () => {
     </Layout>
   );
 };
-
-const TagBar = styled.div`
-  display: grid;
-  grid-auto-flow: column;
-  justify-content: start;
-  grid-gap: 5px;
-  padding: 5px 0;
-`;
 
 export default App;
