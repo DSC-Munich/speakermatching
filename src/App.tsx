@@ -1,10 +1,21 @@
 import React from "react";
 import Signup from "./container/Signup";
+import Speaker from "./container/Speaker";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 const App = () => {
   return (
     <div className="App">
-      <Signup />
+      <Router>
+        <Switch>
+          <Route path="/speaker/:speakerId">
+            <Speaker />
+          </Route>
+          <Route path="/">
+            <Signup />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 };
