@@ -19,8 +19,8 @@ const Layout: React.FunctionComponent<Props> = ({
 };
 
 Layout.propTypes = {
-  children: PropTypes.any,
-  backgroundColor: PropTypes.string
+  backgroundColor: PropTypes.string,
+  children: PropTypes.any
 };
 
 const Wrapper = styled.div<{ backgroundColor?: string }>`
