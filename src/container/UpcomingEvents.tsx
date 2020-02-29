@@ -1,5 +1,5 @@
 import * as React from "react";
-import EventCard from "../components/EventCard";
+import EventCard, { EventStatus } from "../components/EventCard";
 
 const UpcomingEvents: React.FunctionComponent<{}> = () => {
   return (
@@ -14,6 +14,8 @@ const UpcomingEvents: React.FunctionComponent<{}> = () => {
         }}
         freeSlots={3}
         slotDuration={45}
+        isStarred={true}
+        status={EventStatus.NONE}
       />
     </div>
   );

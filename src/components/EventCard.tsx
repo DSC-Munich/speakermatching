@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Button from "../components/Button";
 import Chip from "../components/Chip";
 
-interface Event {
+export interface Event {
   title: string;
   date: Date;
   location: string;
@@ -13,10 +13,20 @@ interface Event {
   topics: string[];
 }
 
+export enum EventStatus {
+  NONE,
+  APPLIED,
+  INVITED,
+  ACCEPTED,
+  DECLINED,
+}
+
 interface Props {
   event: Event;
   freeSlots: number;
   slotDuration: number;
+  isStarred: boolean;
+  status: EventStatus
 }
 
 const DATE_OPTIONS = {
@@ -34,7 +44,7 @@ const EventCard: React.FunctionComponent<Props> = (props) => {
         <CardImage src={props.event.image} />
         <CardContent>
           <Title>{props.event.title}</Title>
-          <Star>🌟</Star>
+          <Star>{props.isStarred? "🌟" : "⭐"}</Star>
           <Date>{new Intl.DateTimeFormat('default', DATE_OPTIONS).format(props.event.date)}</Date>
           <Location>{props.event.location}</Location>
           <Organizer>{props.event.organizer}</Organizer>
@@ -46,7 +56,13 @@ const EventCard: React.FunctionComponent<Props> = (props) => {
           </Slots>
           <ButtonBar>
               <Button title="About us" backgroundColor="#7CD0FF" color="#FFFFFF" />
-              <Button title="Apply 🎤" backgroundColor="#33B4FD" color="#FFFFFF" />
+              {
+                (() => {
+                  switch(props.status) {
+                    case EventStatus.NONE: return <Button title="Apply 🎤" backgroundColor="#33B4FD" color="#FFFFFF" />
+                  }
+                })()
+              }
           </ButtonBar>
         </CardContent>
       </Card>;
