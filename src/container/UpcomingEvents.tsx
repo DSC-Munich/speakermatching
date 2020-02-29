@@ -4,12 +4,16 @@ import EventCard from "../components/EventCard";
 const UpcomingEvents: React.FunctionComponent<{}> = () => {
   return (
     <div>
-      <EventCard eventTitle={"Android Meetup"}
-        eventDate={"Di, 31.03.2020 - 19 Uhr"}
+      <EventCard event={{
+          title: "Android Meetup",
+          date: new Date("2020-12-17T19:30:00"),
+          location: "IsarValley @ Google",
+          organizer: "Android Developer Community Munich",
+          topics: ["Android", "Kotlin"],
+          image: "https://www.ihsig.com/media-intestinal-health-ihsig/ihsig767-1200x1200mm-1024x505.png"
+        }}
         freeSlots={3}
         slotDuration={45}
-        topics={["Android", "Kotlin"]}
-        eventImageSource={"https://www.ihsig.com/media-intestinal-health-ihsig/ihsig767-1200x1200mm-1024x505.png"}
       />
     </div>
   );

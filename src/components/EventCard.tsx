@@ -4,27 +4,45 @@ import styled from "styled-components";
 import Button from "../components/Button";
 import Chip from "../components/Chip";
 
-interface Props {
-  eventTitle: string;
-  eventDate: string;
-  eventImageSource: string;
+interface Event {
+  title: string;
+  date: Date;
+  location: string;
+  organizer: string;
+  image: string;
   topics: string[];
+}
+
+interface Props {
+  event: Event;
   freeSlots: number;
   slotDuration: number;
 }
 
+const DATE_OPTIONS = {
+  weekday: "short",
+  year: "numeric",
+  month: "numeric",
+  day: "numeric",
+  hour: "numeric",
+  minute: "numeric",
+  second: "numeric"
+};
+
 const EventCard: React.FunctionComponent<Props> = (props) => {
   return <Card>
-        <CardImage src={props.eventImageSource} />
+        <CardImage src={props.event.image} />
         <CardContent>
-          <Title>{props.eventTitle}</Title>
+          <Title>{props.event.title}</Title>
           <Star>🌟</Star>
-          <Date>{props.eventDate}</Date>
+          <Date>{new Intl.DateTimeFormat('default', DATE_OPTIONS).format(props.event.date)}</Date>
+          <Location>{props.event.location}</Location>
+          <Organizer>{props.event.organizer}</Organizer>
           {
-              props.topics.map((t) => <Chip title={t} />)
+              props.event.topics.map((t) => <Chip title={t} />)
           }
           <Slots>
-              {props.freeSlots} free slots, {props.slotDuration} min/slot
+              {props.freeSlots} free slots, {props.slotDuration}min / slot
           </Slots>
           <ButtonBar>
               <Button title="About us" backgroundColor="#7CD0FF" color="#FFFFFF" />
@@ -63,13 +81,24 @@ const Title = styled.div`
 `;
 
 const Date = styled.div`
-  font-size: 18px;
+  font-size: 13px;
   color: rgba(0, 0, 0, 0.39);
-  margin: 3px 0px 12px 0px;
+`;
+
+const Location = styled.div`
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.39);
+  margin-bottom: 12px;
+`;
+
+const Organizer = styled.div`
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.39);
+  margin-bottom: 12px;
 `;
 
 const Slots = styled.div`
-  font-size: 18px;
+  font-size: 16px;
   color: rgba(0, 0, 0, 0.7);
   margin: 12px 0px 12px 0px;
 `;
