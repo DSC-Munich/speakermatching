@@ -15,11 +15,11 @@ const App = () => {
           <Route path="/speaker/:speakerId">
             <Speaker />
           </Route>
-          <Route path="/">
-            <Signup />
-          </Route>
           <Route path="/upcomingevents">
             <UpcomingEvents />
+          </Route>
+          <Route path="/">
+            <Signup />
           </Route>
         </Switch>
       </Router>
