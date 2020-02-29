@@ -1,18 +1,22 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import { colors } from "../theme";
 
 interface Props {
   backgroundColor?: string;
-  children: React.ReactChild | React.ReactChild[];
+  children: any;
+  headerImage?: string;
 }
 
 const Layout: React.FunctionComponent<Props> = ({
   children,
-  backgroundColor
+  backgroundColor,
+  headerImage
 }) => {
   return (
     <Wrapper backgroundColor={backgroundColor}>
+      {headerImage && <Header backgroundImage={headerImage || ""}></Header>}
       <Inner>{children}</Inner>
     </Wrapper>
   );
@@ -20,7 +24,8 @@ const Layout: React.FunctionComponent<Props> = ({
 
 Layout.propTypes = {
   backgroundColor: PropTypes.string,
-  children: PropTypes.any
+  children: PropTypes.any,
+  headerImage: PropTypes.any
 };
 
 const Wrapper = styled.div<{ backgroundColor?: string }>`
@@ -32,6 +37,15 @@ const Inner = styled.div`
   width: 500px;
   position: relative;
   margin: 0 auto;
+`;
+
+const Header = styled.div<{ backgroundImage: string }>`
+  height: 300px;
+  background-color: ${colors.gray};
+  background-image: url(${p => p.backgroundImage});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 `;
 
 export default Layout;

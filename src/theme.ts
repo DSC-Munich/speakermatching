@@ -4,9 +4,13 @@ export const colors = {
   yellow: "#fabc02",
   green: "#33a853",
   gray: "lightgray",
-  white: "#fff"
+  white: "#fff",
+  darkgray: "#737373",
+  lightgray: "#eee"
 };
 
 export const fontSizes = {
-  large: "25px"
+  large: "35px",
+  medium: "23px",
+  small: "15px"
 };

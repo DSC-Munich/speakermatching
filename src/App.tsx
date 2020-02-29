@@ -9,6 +9,9 @@ const App = () => {
     <div className="App">
       <Router>
         <Switch>
+          <Route path="/event">
+            <p>Events</p>
+          </Route>
           <Route path="/speaker/:speakerId">
             <Speaker />
           </Route>
