@@ -1,6 +1,7 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Button from "../components/Button";
 import Chip from "../components/Chip";
 
 interface Props {
@@ -26,8 +27,8 @@ const EventCard: React.FunctionComponent<Props> = (props) => {
               {props.freeSlots} free slots, {props.slotDuration} min/slot
           </Slots>
           <ButtonBar>
-              <button>more information</button>
-              <button>Apply 🎤</button>
+              <Button title="About us" backgroundColor="#7CD0FF" color="#FFFFFF" />
+              <Button title="Apply 🎤" backgroundColor="#33B4FD" color="#FFFFFF" />
           </ButtonBar>
         </CardContent>
       </Card>;

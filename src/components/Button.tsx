@@ -36,6 +36,7 @@ const Container = styled.div<{ backgroundColor?: string; color?: string }>`
   cursor: pointer;
   transition: ease all 300ms;
   font-weight: bold;
+  display: inline-block;
 
   :hover {
     box-shadow: inset 0 0 100px 100px rgba(255, 255, 255, 0.1);
