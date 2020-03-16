@@ -9,6 +9,7 @@ interface Props {
   headline: string;
   description: string;
   edit: boolean;
+  minHeight?: number;
   setDescription: (text: string) => any;
 }
 
@@ -16,7 +17,8 @@ const EditableInfo: React.FunctionComponent<Props> = ({
   headline,
   description,
   edit,
-  setDescription
+  setDescription,
+  minHeight
 }) => {
   return (
     <Wrapper>
@@ -24,6 +26,7 @@ const EditableInfo: React.FunctionComponent<Props> = ({
       {edit ? (
         <StyledInput
           value={description}
+          minHeight={minHeight}
           onChange={e => setDescription(e.target.value)}
         ></StyledInput>
       ) : (
@@ -33,7 +36,7 @@ const EditableInfo: React.FunctionComponent<Props> = ({
   );
 };
 
-const StyledInput = styled.textarea`
+const StyledInput = styled.textarea<{ minHeight?: number }>`
   width: 100%;
   border: 0 solid transparent;
   resize: none;
@@ -41,6 +44,7 @@ const StyledInput = styled.textarea`
   font-size: ${fontSizes.small};
   padding: 10px;
   color: ${colors.darkgray};
+  min-height: ${p => p.minHeight || 0}px;
 `;
 
 const Wrapper = styled.div`
@@ -51,6 +55,7 @@ EditableInfo.propTypes = {
   description: PropTypes.any,
   edit: PropTypes.any,
   headline: PropTypes.any,
+  minHeight: PropTypes.any,
   setDescription: PropTypes.any
 };
 

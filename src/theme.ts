@@ -6,7 +6,12 @@ export const colors = {
   gray: "lightgray",
   white: "#fff",
   darkgray: "#737373",
-  lightgray: "#eee"
+  lightgray: "#eee",
+  pastelRed1: "#D99294",
+  pastelRed2: "#F5B7B7",
+  pastelRed3: "#F6CACB",
+  pastelGreen1: "#D2E9DA",
+  pastelGreen2: "#AFDAC1"
 };
 
 export const fontSizes = {

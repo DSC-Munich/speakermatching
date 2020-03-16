@@ -94,9 +94,10 @@ const App: React.FunctionComponent<{}> = () => {
       <Space height={30} />
       <Button
         title={edit ? "Save" : "Edit"}
-        backgroundColor={colors.green}
+        backgroundColor={colors.pastelGreen2}
         color={colors.white}
         onClick={() => setEdit(!edit)}
+        buttonWidth={"50%"}
       />
     </Layout>
   );
