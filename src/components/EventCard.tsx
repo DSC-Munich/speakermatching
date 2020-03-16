@@ -26,7 +26,9 @@ interface Props {
   freeSlots: number;
   slotDuration: number;
   isStarred: boolean;
-  status: EventStatus
+  status: EventStatus;
+
+  //onEventStatusChanged: (status: EventStatus) => void;
 }
 
 const DATE_OPTIONS = {
@@ -40,7 +42,7 @@ const DATE_OPTIONS = {
 };
 
 const EventCard: React.FunctionComponent<Props> = (props) => {
-  return <Card>
+  return <Card hasFlap={props.status in [EventStatus.APPLIED, EventStatus.INVITED]}>
         <CardImage src={props.event.image} />
         <CardContent>
           <Title>{props.event.title}</Title>
@@ -58,18 +60,29 @@ const EventCard: React.FunctionComponent<Props> = (props) => {
                 (() => {
                   switch(props.status) {
                     case EventStatus.NONE: return <Button title="Apply 🎤" backgroundColor="#33B4FD" color="#FFFFFF" />
+                    case EventStatus.APPLIED: return <Button title="Cancel Application 🎤" backgroundColor="#A6A6A6" color="#FFFFFF" />
+                    case EventStatus.INVITED: return <Button title="Decline Invitation" backgroundColor="#A6A6A6" color="#FFFFFF" />
                   }
                 })()
               }
           </ButtonBar>
         </CardContent>
+        {
+          (() => {
+            switch(props.status) {
+              case EventStatus.APPLIED: return <Flap color={"#FFA24D"}>Applied!</Flap>;
+              case EventStatus.INVITED: return <Flap color={"#08BA4F"}>Invited!</Flap>;
+            }
+          })()
+        }
       </Card>;
 };
 
-const Card = styled.div`
+const Card = styled.div<{ hasFlap: boolean }>`
   background-color: #F4F4F4;
-  border-radius: 14px;
+  border-radius: ${p => p.hasFlap? '14px 0px 14px 14px' : '14px'};
   margin: 5px;
+  margin-top: 25px;
   display: grid;
   grid-template-columns: 60px auto;
   grid-template-rows: auto;
@@ -124,8 +137,21 @@ const ButtonBar = styled.div`
 const Star = styled.div`
   position: absolute;
   right: 15px;
-  top: 15px;
+  top: 35px;
   font-size: 30px;
+`;
+
+const Flap = styled.div<{color: string}>`
+  position: absolute;
+  height: 25px;
+  width: 90px;
+  top: 0px;
+  right: 5px;
+  background-color: ${p => p.color};
+  color: white;
+  border-radius: 14px 14px 0px 0px;
+  text-align: center;
+  line-height: 25px;
 `;
 
 

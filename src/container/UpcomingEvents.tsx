@@ -15,7 +15,7 @@ const UpcomingEvents: React.FunctionComponent<{}> = () => {
         freeSlots={3}
         slotDuration={45}
         isStarred={true}
-        status={EventStatus.NONE}
+        status={EventStatus.APPLIED}
       />
     </div>
   );
