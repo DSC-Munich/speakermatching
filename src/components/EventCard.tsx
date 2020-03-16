@@ -11,6 +11,7 @@ export interface Event {
   organizer: string;
   image: string;
   topics: string[];
+  totalSlots?: number;
 }
 
 export enum EventStatus {
@@ -21,7 +22,7 @@ export enum EventStatus {
   DECLINED
 }
 
-interface Props {
+export interface EventCardProps {
   event: Event;
   freeSlots: number;
   slotDuration: number;
@@ -39,7 +40,7 @@ const DATE_OPTIONS = {
   second: "numeric"
 };
 
-const EventCard: React.FunctionComponent<Props> = props => {
+const EventCard: React.FunctionComponent<EventCardProps> = props => {
   return (
     <Card>
       <CardImage src={props.event.image} />

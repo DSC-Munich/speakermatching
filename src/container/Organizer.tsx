@@ -11,10 +11,16 @@ import styled from "styled-components";
 import { colors } from "../theme";
 import EditableTags from "../components/EditableTags";
 import Space from "../components/Space";
-import EventCard from "../components/EventCard";
+import EventCard, {
+  EventCardProps,
+  Event,
+  EventStatus
+} from "../components/EventCard";
 
 // TODO: Connect to firebase
-const getOrganizerData: (organizerId: string) => any = organizerId => {
+const getOrganizerData: (
+  organizerId: string
+) => { [key: string]: any; events: EventCardProps[] } = organizerId => {
   return {
     name: "Android Meetup",
     id: organizerId,
@@ -28,7 +34,20 @@ const getOrganizerData: (organizerId: string) => any = organizerId => {
       "https://www.mch-group.com/-/media/mch-group/Images/Content/News/Blog/2017/2017-04/mch-group-live-marketing-aktivierung.jpg",
     events: [
       {
-        name: "Android Meetup"
+        event: {
+          title: "Dev Fest",
+          date: new Date(),
+          location: "Google Munich",
+          organizer: "Google",
+          image:
+            "https://www.mch-group.com/-/media/mch-group/Images/Content/News/Blog/2017/2017-04/mch-group-live-marketing-aktivierung.jpg",
+          topics: ["Android", "Kotlin"],
+          totalSlots: 50
+        },
+        freeSlots: 5,
+        slotDuration: 30,
+        isStarred: true,
+        status: EventStatus.APPLIED
       }
     ]
   };
@@ -43,7 +62,7 @@ const Organizer: React.FunctionComponent<{}> = () => {
   const [edit, setEdit] = useState(false);
   const [name, setName] = useState();
   const [about, setAbout] = useState();
-  const [invitations, setInvitations] = useState();
+  const [events, setEvents]: [EventCardProps[], any] = useState([]);
   const [tags, setTags]: [{ value: string; color: string }[], any] = useState(
     []
   );
@@ -58,14 +77,14 @@ const Organizer: React.FunctionComponent<{}> = () => {
       about = undefined,
       tags = undefined,
       imageUrl = undefined,
-      invitations = undefined
+      events = []
     } = organizerId ? getOrganizerData(organizerId) : {};
 
     setName(name);
     setAbout(about);
     setTags(tags);
     setImageUrl(imageUrl);
-    setInvitations(invitations);
+    setEvents(events);
   }, []);
 
   return (
@@ -84,6 +103,9 @@ const Organizer: React.FunctionComponent<{}> = () => {
         minHeight={150}
       />
       <H2>Our events</H2>
+      {events.map((e: EventCardProps) => (
+        <EventCard key={Math.random()} {...e} />
+      ))}
 
       <Space height={30} />
       <Button
