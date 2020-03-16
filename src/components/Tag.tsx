@@ -17,12 +17,25 @@ const Tag: React.FunctionComponent<Props> = ({
   deleteTag
 }) => {
   return (
-    <StyledTag color={color}>
+    <StyledTag value={value} color={color}>
       {value}
       {edit && <DeleteButton onClick={() => deleteTag(value)}>x</DeleteButton>}
     </StyledTag>
   );
 };
+
+const stringToColor = function(str: string) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  let color = '#';
+  for (let i = 0; i < 3; i++) {
+    let value = (hash >> (i * 8)) & 0xFF;
+    color += ('00' + value.toString(16)).substr(-2);
+  }
+  return color;
+}
 
 Tag.propTypes = {
   color: PropTypes.any,
@@ -31,8 +44,8 @@ Tag.propTypes = {
   value: PropTypes.any
 };
 
-const StyledTag = styled.div<{ color?: string }>`
-  background-color: ${p => p.color || colors.gray};
+const StyledTag = styled.div<{ value: string, color?: string }>`
+  background-color: ${p => p.color || stringToColor(p.value)};
   border-radius: 30px;
   color: ${colors.white};
   font-size: ${fontSizes.small};
