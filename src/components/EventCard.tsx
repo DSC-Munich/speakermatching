@@ -44,7 +44,7 @@ const DATE_OPTIONS = {
 
 const EventCard: React.FunctionComponent<EventCardProps> = (props) => {
   return (
-    <Card hasFlap={props.status in [EventStatus.APPLIED, EventStatus.INVITED]}>
+    <Card hasFlap={[EventStatus.APPLIED, EventStatus.INVITED].includes(props.status)}>
       <CardImage src={props.event.image} />
       <CardContent>
         <Title>{props.event.title}</Title>
