@@ -1,9 +1,10 @@
 import * as React from "react";
 import EventCard, { EventStatus } from "../components/EventCard";
+import Layout from "../components/Layout";
 
 const UpcomingEvents: React.FunctionComponent<{}> = () => {
   return (
-    <div>
+    <Layout>
       <EventCard
         event={{
           title: "Android Meetup",
@@ -20,7 +21,7 @@ const UpcomingEvents: React.FunctionComponent<{}> = () => {
         status={EventStatus.APPLIED}
         onEventStatusChanged={() => {}}
       />
-    </div>
+    </Layout>
   );
 };
 

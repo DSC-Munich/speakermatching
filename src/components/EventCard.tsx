@@ -102,6 +102,7 @@ const Card = styled.div<{ hasFlap: boolean }>`
   grid-template-rows: auto;
   grid-template-areas: "image content";
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  position: relative;
 `;
 
 const CardImage = styled.div<{ src: string }>`
@@ -154,7 +155,7 @@ const ButtonBar = styled.div`
 const Star = styled.div`
   position: absolute;
   right: 15px;
-  top: 35px;
+  top: 15px;
   font-size: 30px;
 `;
 
@@ -162,8 +163,8 @@ const Flap = styled.div<{color: string}>`
   position: absolute;
   height: 25px;
   width: 90px;
-  top: 0px;
-  right: 5px;
+  top: -25px;
+  right: 0px;
   background-color: ${p => p.color};
   color: white;
   border-radius: 14px 14px 0px 0px;
