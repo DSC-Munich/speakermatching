@@ -144,6 +144,8 @@ const Slots = styled.div`
 
 const ButtonBar = styled.div`
   text-align: right;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const Star = styled.div`
