@@ -16,6 +16,7 @@ const UpcomingEvents: React.FunctionComponent<{}> = () => {
         slotDuration={45}
         isStarred={true}
         status={EventStatus.APPLIED}
+        onEventStatusChanged={() => {}}
       />
     </div>
   );

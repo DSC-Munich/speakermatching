@@ -28,7 +28,7 @@ interface Props {
   isStarred: boolean;
   status: EventStatus;
 
-  //onEventStatusChanged: (status: EventStatus) => void;
+  onEventStatusChanged: (status: EventStatus) => void;
 }
 
 const DATE_OPTIONS = {
@@ -59,9 +59,21 @@ const EventCard: React.FunctionComponent<Props> = (props) => {
               {
                 (() => {
                   switch(props.status) {
-                    case EventStatus.NONE: return <Button title="Apply 🎤" backgroundColor="#33B4FD" color="#FFFFFF" />
-                    case EventStatus.APPLIED: return <Button title="Cancel Application 🎤" backgroundColor="#A6A6A6" color="#FFFFFF" />
-                    case EventStatus.INVITED: return <Button title="Decline Invitation" backgroundColor="#A6A6A6" color="#FFFFFF" />
+                    case EventStatus.NONE: 
+                      return <Button title="Apply 🎤"
+                                     backgroundColor="#33B4FD"
+                                     color="#FFFFFF"
+                                     onClick={() => props.onEventStatusChanged(EventStatus.APPLIED)} />
+                    case EventStatus.APPLIED:
+                      return <Button title="Cancel Application 🎤"
+                                     backgroundColor="#A6A6A6"
+                                     color="#FFFFFF"
+                                     onClick={() => props.onEventStatusChanged(EventStatus.NONE)} />
+                    case EventStatus.INVITED:
+                      return <Button title="Decline Invitation"
+                                     backgroundColor="#A6A6A6"
+                                     color="#FFFFFF"
+                                     onClick={() => props.onEventStatusChanged(EventStatus.NONE)} />
                   }
                 })()
               }
