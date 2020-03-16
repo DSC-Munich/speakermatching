@@ -29,13 +29,31 @@ const stringToColor = function(str: string) {
   for (let i = 0; i < str.length; i++) {
     hash = str.charCodeAt(i) + ((hash << 5) - hash);
   }
-  let color = '#';
+  let color = "#";
   for (let i = 0; i < 3; i++) {
-    let value = (hash >> (i * 8)) & 0xFF;
-    color += ('00' + value.toString(16)).substr(-2);
+    const value = (hash >> (i * 8)) & 0xff;
+    color += ("00" + value.toString(16)).substr(-2);
   }
   return color;
-}
+};
+
+const stringToPastelColor = (str: string) => {
+  let seed = 0;
+  for (let i = 0; i < str.length; i++) {
+    seed = str.charCodeAt(i) + ((seed << 5) - seed);
+  }
+
+  seed = (Math.abs(seed) % 10) / 10;
+  return (
+    "hsl(" +
+    360 * seed +
+    "," +
+    (25 + 60 * seed) +
+    "%," +
+    (75 + 10 * seed) +
+    "%)"
+  );
+};
 
 Tag.propTypes = {
   color: PropTypes.any,
@@ -44,8 +62,8 @@ Tag.propTypes = {
   value: PropTypes.any
 };
 
-const StyledTag = styled.div<{ value: string, color?: string }>`
-  background-color: ${p => p.color || stringToColor(p.value)};
+const StyledTag = styled.div<{ value: string; color?: string }>`
+  background-color: ${p => p.color || stringToPastelColor(p.value)};
   border-radius: 30px;
   color: ${colors.white};
   font-size: ${fontSizes.small};

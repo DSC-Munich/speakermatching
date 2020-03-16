@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Button from "../components/Button";
 import EditableTags from "../components/EditableTags";
+import { colors } from "../theme";
 
 export interface Event {
   title: string;
@@ -65,7 +66,11 @@ const EventCard: React.FunctionComponent<EventCardProps> = props => {
           {props.freeSlots} free slots, {props.slotDuration}min / slot
         </Slots>
         <ButtonBar>
-          <Button title="About us" backgroundColor="#7CD0FF" color="#FFFFFF" />
+          <Button
+            title="About us"
+            backgroundColor={colors.pastelRed1}
+            color="#FFFFFF"
+          />
           {(() => {
             switch (props.status) {
               case EventStatus.NONE:
