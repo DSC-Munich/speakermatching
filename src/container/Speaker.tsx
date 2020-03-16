@@ -97,6 +97,7 @@ const App: React.FunctionComponent<{}> = () => {
         backgroundColor={colors.green}
         color={colors.white}
         onClick={() => setEdit(!edit)}
+        buttonWidth={"50%"}
       />
     </Layout>
   );

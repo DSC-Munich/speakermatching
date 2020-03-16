@@ -114,6 +114,7 @@ const CardImage = styled.div<{ src: string }>`
 const CardContent = styled.div`
   grid-aread: content;
   padding: 10px;
+  position: relative;
 `;
 
 const Title = styled.div`

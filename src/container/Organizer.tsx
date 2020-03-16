@@ -48,6 +48,22 @@ const getOrganizerData: (
         slotDuration: 30,
         isStarred: true,
         status: EventStatus.APPLIED
+      },
+      {
+        event: {
+          title: "Dev Fest",
+          date: new Date(),
+          location: "Google Munich",
+          organizer: "Google",
+          image:
+            "https://www.mch-group.com/-/media/mch-group/Images/Content/News/Blog/2017/2017-04/mch-group-live-marketing-aktivierung.jpg",
+          topics: ["Android", "Kotlin"],
+          totalSlots: 50
+        },
+        freeSlots: 5,
+        slotDuration: 30,
+        isStarred: true,
+        status: EventStatus.APPLIED
       }
     ]
   };
@@ -102,18 +118,32 @@ const Organizer: React.FunctionComponent<{}> = () => {
         setDescription={setAbout}
         minHeight={150}
       />
-      <H2>Our events</H2>
-      {events.map((e: EventCardProps) => (
-        <EventCard key={Math.random()} {...e} />
-      ))}
-
-      <Space height={30} />
+      <Space height={20} />
       <Button
         title={edit ? "Save" : "Edit"}
         backgroundColor={colors.green}
         color={colors.white}
         onClick={() => setEdit(!edit)}
       />
+      <Space height={30} />
+      <H2>Our events</H2>
+      <Space height={20} />
+      {events.map((e: EventCardProps) => (
+        <>
+          <EventCard key={Math.random()} {...e} />
+          <Space height={10} />
+        </>
+      ))}
+      <Space height={20} />
+      <Button
+        title={"Add event"}
+        backgroundColor={colors.green}
+        color={colors.white}
+        onClick={() => {
+          console.log("Adding event");
+        }}
+      />
+      <Space height={50} />
     </Layout>
   );
 };
