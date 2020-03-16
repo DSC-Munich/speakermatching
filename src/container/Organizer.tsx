@@ -11,6 +11,7 @@ import styled from "styled-components";
 import { colors } from "../theme";
 import EditableTags from "../components/EditableTags";
 import Space from "../components/Space";
+import EventCard from "../components/EventCard";
 
 // TODO: Connect to firebase
 const getOrganizerData: (organizerId: string) => any = organizerId => {

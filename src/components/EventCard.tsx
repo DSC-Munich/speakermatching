@@ -18,7 +18,7 @@ export enum EventStatus {
   APPLIED,
   INVITED,
   ACCEPTED,
-  DECLINED,
+  DECLINED
 }
 
 interface Props {
@@ -26,7 +26,7 @@ interface Props {
   freeSlots: number;
   slotDuration: number;
   isStarred: boolean;
-  status: EventStatus
+  status: EventStatus;
 }
 
 const DATE_OPTIONS = {
@@ -39,35 +39,60 @@ const DATE_OPTIONS = {
   second: "numeric"
 };
 
-const EventCard: React.FunctionComponent<Props> = (props) => {
-  return <Card>
-        <CardImage src={props.event.image} />
-        <CardContent>
-          <Title>{props.event.title}</Title>
-          <Star>{props.isStarred? "🌟" : "⭐"}</Star>
-          <Date>{new Intl.DateTimeFormat('default', DATE_OPTIONS).format(props.event.date)}</Date>
-          <Location>{props.event.location}</Location>
-          <Organizer>{props.event.organizer}</Organizer>
-          <EditableTags edit={false} tags={props.event.topics.map((t) => ({ value: t, color: '' }))} setTags={() => {}} />
-          <Slots>
-              {props.freeSlots} free slots, {props.slotDuration}min / slot
-          </Slots>
-          <ButtonBar>
-              <Button title="About us" backgroundColor="#7CD0FF" color="#FFFFFF" />
-              {
-                (() => {
-                  switch(props.status) {
-                    case EventStatus.NONE: return <Button title="Apply 🎤" backgroundColor="#33B4FD" color="#FFFFFF" />
-                  }
-                })()
-              }
-          </ButtonBar>
-        </CardContent>
-      </Card>;
+const EventCard: React.FunctionComponent<Props> = props => {
+  return (
+    <Card>
+      <CardImage src={props.event.image} />
+      <CardContent>
+        <Title>{props.event.title}</Title>
+        <Star>{props.isStarred ? "🌟" : "⭐"}</Star>
+        <Date>
+          {new Intl.DateTimeFormat("default", DATE_OPTIONS).format(
+            props.event.date
+          )}
+        </Date>
+        <Location>{props.event.location}</Location>
+        <Organizer>{props.event.organizer}</Organizer>
+        <EditableTags
+          edit={false}
+          tags={props.event.topics.map(t => ({ value: t, color: "" }))}
+          setTags={() => {
+            console.log("Callback");
+          }}
+        />
+        <Slots>
+          {props.freeSlots} free slots, {props.slotDuration}min / slot
+        </Slots>
+        <ButtonBar>
+          <Button title="About us" backgroundColor="#7CD0FF" color="#FFFFFF" />
+          {(() => {
+            switch (props.status) {
+              case EventStatus.NONE:
+                return (
+                  <Button
+                    title="Apply 🎤"
+                    backgroundColor="#33B4FD"
+                    color="#FFFFFF"
+                  />
+                );
+            }
+          })()}
+        </ButtonBar>
+      </CardContent>
+    </Card>
+  );
+};
+
+EventCard.propTypes = {
+  event: PropTypes.any,
+  freeSlots: PropTypes.any,
+  isStarred: PropTypes.any,
+  slotDuration: PropTypes.any,
+  status: PropTypes.any
 };
 
 const Card = styled.div`
-  background-color: #F4F4F4;
+  background-color: #f4f4f4;
   border-radius: 14px;
   margin: 5px;
   display: grid;
@@ -77,7 +102,7 @@ const Card = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
-const CardImage = styled.div<{src: string}>`
+const CardImage = styled.div<{ src: string }>`
   grid-area: image;
   border-radius: 14px 0px 0px 14px;
   background-image: url(${p => p.src});
@@ -127,12 +152,5 @@ const Star = styled.div`
   top: 15px;
   font-size: 30px;
 `;
-
-
-/*
-Button.propTypes = {
-  title: PropTypes.string.isRequired,
-  onClick: PropTypes.func
-};*/
 
 export default EventCard;
