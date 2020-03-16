@@ -11,6 +11,7 @@ export interface Event {
   organizer: string;
   image: string;
   topics: string[];
+  totalSlots?: number;
 }
 
 export enum EventStatus {
@@ -18,10 +19,10 @@ export enum EventStatus {
   APPLIED,
   INVITED,
   ACCEPTED,
-  DECLINED,
+  DECLINED
 }
 
-interface Props {
+export interface EventCardProps {
   event: Event;
   freeSlots: number;
   slotDuration: number;
@@ -41,53 +42,54 @@ const DATE_OPTIONS = {
   second: "numeric"
 };
 
-const EventCard: React.FunctionComponent<Props> = (props) => {
-  return <Card hasFlap={props.status in [EventStatus.APPLIED, EventStatus.INVITED]}>
-        <CardImage src={props.event.image} />
-        <CardContent>
-          <Title>{props.event.title}</Title>
-          <Star>{props.isStarred? "🌟" : "⭐"}</Star>
-          <Date>{new Intl.DateTimeFormat('default', DATE_OPTIONS).format(props.event.date)}</Date>
-          <Location>{props.event.location}</Location>
-          <Organizer>{props.event.organizer}</Organizer>
-          <EditableTags edit={false} tags={props.event.topics.map((t) => ({ value: t, color: '' }))} setTags={() => {}} />
-          <Slots>
-              {props.freeSlots} free slots, {props.slotDuration}min / slot
-          </Slots>
-          <ButtonBar>
-              <Button title="About us" backgroundColor="#7CD0FF" color="#FFFFFF" />
-              {
-                (() => {
-                  switch(props.status) {
-                    case EventStatus.NONE: 
-                      return <Button title="Apply 🎤"
-                                     backgroundColor="#33B4FD"
-                                     color="#FFFFFF"
-                                     onClick={() => props.onEventStatusChanged(EventStatus.APPLIED)} />
-                    case EventStatus.APPLIED:
-                      return <Button title="Cancel Application 🎤"
-                                     backgroundColor="#A6A6A6"
-                                     color="#FFFFFF"
-                                     onClick={() => props.onEventStatusChanged(EventStatus.NONE)} />
-                    case EventStatus.INVITED:
-                      return <Button title="Decline Invitation"
-                                     backgroundColor="#A6A6A6"
-                                     color="#FFFFFF"
-                                     onClick={() => props.onEventStatusChanged(EventStatus.NONE)} />
-                  }
-                })()
-              }
-          </ButtonBar>
-        </CardContent>
-        {
-          (() => {
-            switch(props.status) {
-              case EventStatus.APPLIED: return <Flap color={"#FFA24D"}>Applied!</Flap>;
-              case EventStatus.INVITED: return <Flap color={"#08BA4F"}>Invited!</Flap>;
+const EventCard: React.FunctionComponent<EventCardProps> = (props) => {
+  return (
+    <Card hasFlap={props.status in [EventStatus.APPLIED, EventStatus.INVITED]}>
+      <CardImage src={props.event.image} />
+      <CardContent>
+        <Title>{props.event.title}</Title>
+        <Star>{props.isStarred? "🌟" : "⭐"}</Star>
+        <Date>{new Intl.DateTimeFormat('default', DATE_OPTIONS).format(props.event.date)}</Date>
+        <Location>{props.event.location}</Location>
+        <Organizer>{props.event.organizer}</Organizer>
+        <EditableTags edit={false} tags={props.event.topics.map((t) => ({ value: t, color: '' }))} setTags={() => {}} />
+        <Slots>
+            {props.freeSlots} free slots, {props.slotDuration}min / slot
+        </Slots>
+        <ButtonBar>
+            <Button title="About us" backgroundColor="#7CD0FF" color="#FFFFFF" />
+            {
+              (() => {
+                switch(props.status) {
+                  case EventStatus.NONE: 
+                    return <Button title="Apply 🎤"
+                                    backgroundColor="#33B4FD"
+                                    color="#FFFFFF"
+                                    onClick={() => props.onEventStatusChanged(EventStatus.APPLIED)} />
+                  case EventStatus.APPLIED:
+                    return <Button title="Cancel Application 🎤"
+                                    backgroundColor="#A6A6A6"
+                                    color="#FFFFFF"
+                                    onClick={() => props.onEventStatusChanged(EventStatus.NONE)} />
+                  case EventStatus.INVITED:
+                    return <Button title="Decline Invitation"
+                                    backgroundColor="#A6A6A6"
+                                    color="#FFFFFF"
+                                    onClick={() => props.onEventStatusChanged(EventStatus.NONE)} />
+                }
+              })()
             }
-          })()
-        }
-      </Card>;
+        </ButtonBar>
+      </CardContent>
+      {
+        (() => {
+          switch(props.status) {
+            case EventStatus.APPLIED: return <Flap color={"#FFA24D"}>Applied!</Flap>;
+            case EventStatus.INVITED: return <Flap color={"#08BA4F"}>Invited!</Flap>;
+          }
+        })()
+      }
+    </Card>);
 };
 
 const Card = styled.div<{ hasFlap: boolean }>`
@@ -102,7 +104,7 @@ const Card = styled.div<{ hasFlap: boolean }>`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
-const CardImage = styled.div<{src: string}>`
+const CardImage = styled.div<{ src: string }>`
   grid-area: image;
   border-radius: 14px 0px 0px 14px;
   background-image: url(${p => p.src});
@@ -113,6 +115,7 @@ const CardImage = styled.div<{src: string}>`
 const CardContent = styled.div`
   grid-aread: content;
   padding: 10px;
+  position: relative;
 `;
 
 const Title = styled.div`
@@ -167,12 +170,5 @@ const Flap = styled.div<{color: string}>`
   text-align: center;
   line-height: 25px;
 `;
-
-
-/*
-Button.propTypes = {
-  title: PropTypes.string.isRequired,
-  onClick: PropTypes.func
-};*/
 
 export default EventCard;

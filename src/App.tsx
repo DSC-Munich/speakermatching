@@ -1,5 +1,6 @@
 import React from "react";
 import Signup from "./container/Signup";
+import Organizer from "./container/Organizer";
 import Speaker from "./container/Speaker";
 import UpcomingEvents from "./container/UpcomingEvents";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -14,6 +15,9 @@ const App = () => {
           </Route>
           <Route path="/speaker/:speakerId">
             <Speaker />
+          </Route>
+          <Route path="/organizer/:organizerId">
+            <Organizer />
           </Route>
           <Route path="/upcomingevents">
             <UpcomingEvents />
