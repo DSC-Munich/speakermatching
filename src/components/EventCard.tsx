@@ -2,7 +2,7 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Button from "../components/Button";
-import Chip from "../components/Chip";
+import EditableTags from "../components/EditableTags";
 
 export interface Event {
   title: string;
@@ -48,9 +48,7 @@ const EventCard: React.FunctionComponent<Props> = (props) => {
           <Date>{new Intl.DateTimeFormat('default', DATE_OPTIONS).format(props.event.date)}</Date>
           <Location>{props.event.location}</Location>
           <Organizer>{props.event.organizer}</Organizer>
-          {
-              props.event.topics.map((t) => <Chip title={t} />)
-          }
+          <EditableTags edit={false} tags={props.event.topics.map((t) => ({ value: t, color: '' }))} setTags={() => {}} />
           <Slots>
               {props.freeSlots} free slots, {props.slotDuration}min / slot
           </Slots>
