@@ -1,3 +1,4 @@
+# About the project #
 ## What's this project about?
 This is our contribution to the DSC Solution Challenge: We are four students from the TU Munich. We founded the DSC Munich last year, with the mission to create a community from students for students where we can learn about exciting topics together. However, it is difficult for community organizers to find speakers for their events. Likewise, after talking to some speakers, they also can't find fitting events for their talks easily. 
 
@@ -11,11 +12,11 @@ This setup makes our platform scalable for many more communities and speakers wo
 The project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Thanks to our friends for your feedback
-Vince V., the community lead of Flutter Munich
-Franziska H., a Developer Relations professional
-Nicolas G., one of our previous speakers
+* Vince V., the community lead of Flutter Munich
+* Franziska H., a Developer Relations professional
+* Nicolas G., one of our previous speakers
 
-## How to run the code:
+# How to run the code:
 In the project directory, you can run:
 
 ### `yarn start`
