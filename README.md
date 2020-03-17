@@ -11,6 +11,13 @@ This setup makes our platform **scalable for many more communities and speakers 
 
 The project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Next steps
+We collected some feedback and these are our next steps towards an even more efficient platform:
+* a message function: matched speakers/organizers should be able to communicate through the app
+* talk proposal: when a speaker applies for an event, they should be able to propose one of their talks
+* notifications: users should be able to configure push notifications
+* search function: users should be able to search by name, tag, topics ... 
+
 ## Thanks to our friends for your feedback!
 * Vince V., community lead of Flutter Munich
 * Franziska H., Developer Relations professional
