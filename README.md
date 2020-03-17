@@ -1,7 +1,14 @@
+## What's this project about?
+This is our contribution to the DSC Solution Challenge: We are four students from the TU Munich. We founded the DSC Munich last year, with the mission to create a community from students for students where we can learn about exciting topics together. However, it is difficult for community organizers to find speakers for their events. Likewise, after talking to some speakers, they also can't find fitting events for their talks easily. 
+
+Most matches in the community world are found by propagating contacts in person (a speaker can recommend another speaker, for example). This means that we have only access to a small subset of speakers. Our solution is a global platform where speakers and event organizers can register and search for each other, making the match much more efficient and fitting. 
+
+## Technologies used
+We used TypeScript for the Frontend and Firebase for the Backend. This makes our platform scalable for many more communities worldwide! 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
+## How to run the code:
 In the project directory, you can run:
 
 ### `yarn start`
