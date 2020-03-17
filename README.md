@@ -4,9 +4,16 @@ This is our contribution to the DSC Solution Challenge: We are four students fro
 Most matches in the community world are found by propagating contacts in person (a speaker can recommend another speaker, for example). This means that we have only access to a small subset of speakers. Our solution is a global platform where speakers and event organizers can register and search for each other, making the match much more efficient and fitting. 
 
 ## Technologies used
-We used TypeScript for the Frontend for a beautiful UI, and Firebase for the Backend because it is easy to use and provides us with everything we need and more. This setup makes our platform scalable for many more communities worldwide! 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+We used TypeScript for the Frontend for a beautiful UI, and Firebase for the Backend because it is easy to use and provides us with everything we need and more. 
 
+This setup makes our platform scalable for many more communities and speakers worldwide! This goal has been important to us since the beginning because the more people register, the more powerful our tool becomes, and the more exciting events can be held with it!
+
+The project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Thanks to our friends for your feedback
+Vince V., the community lead of Flutter Munich
+Franziska H., a Developer Relations professional
+Nicolas G., one of our previous speakers
 
 ## How to run the code:
 In the project directory, you can run:
