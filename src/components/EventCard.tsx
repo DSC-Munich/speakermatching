@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import Button from "../components/Button";
 import EditableTags from "../components/EditableTags";
+import ExpandableText from "./Expander";
+import { H3 } from "./Headlines";
 
 export interface Event {
   title: string;
@@ -12,6 +14,9 @@ export interface Event {
   image: string;
   topics: string[];
   totalSlots?: number;
+  eventDescription?: string;
+  speakerDescription?: string;
+  budgetDescription?: string;
 }
 
 export enum EventStatus {
@@ -43,6 +48,8 @@ const DATE_OPTIONS = {
 };
 
 const EventCard: React.FunctionComponent<EventCardProps> = (props) => {
+const [showDescription, setShowDescription] = React.useState(false);
+
   return (
     <Card hasFlap={[EventStatus.APPLIED, EventStatus.INVITED].includes(props.status)}>
       <CardImage src={props.event.image} />
@@ -80,7 +87,16 @@ const EventCard: React.FunctionComponent<EventCardProps> = (props) => {
               })()
             }
         </ButtonBar>
+        <ExpanderButton onClick={() => setShowDescription(!showDescription)}>{showDescription? "🔼" : "🔽"}</ExpanderButton>
       </CardContent>
+      <ExpandableDescription isExpanded={showDescription}>
+        <H3 color={"black"}>Description:</H3>
+        {props.event.eventDescription}
+        <H3 color={"black"}>We're looking for:</H3>
+        {props.event.speakerDescription}
+        <H3 color={"black"}>Budget:</H3>
+        {props.event.budgetDescription}
+      </ExpandableDescription>
       {
         (() => {
           switch(props.status) {
@@ -99,8 +115,8 @@ const Card = styled.div<{ hasFlap: boolean }>`
   margin-top: 25px;
   display: grid;
   grid-template-columns: 60px auto;
-  grid-template-rows: auto;
-  grid-template-areas: "image content";
+  grid-template-rows: auto auto;
+  grid-template-areas: "image content" "empty description";
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   position: relative;
 `;
@@ -170,6 +186,16 @@ const Flap = styled.div<{color: string}>`
   border-radius: 14px 14px 0px 0px;
   text-align: center;
   line-height: 25px;
+`;
+
+const ExpanderButton = styled.div`
+  text-align: center;
+  cursor: pointer;
+`;
+
+const ExpandableDescription = styled(ExpandableText)`
+  grid-area: description;
+  color: rgba(0, 0, 0, 0.39);
 `;
 
 export default EventCard;

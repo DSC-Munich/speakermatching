@@ -18,6 +18,9 @@ const UpcomingEvents: React.FunctionComponent<{}> = () => {
           location: "IsarValley @ Google",
           organizer: "Android Developer Community Munich",
           topics: ["Android", "Kotlin"],
+          eventDescription: "The Dev-Fest is a big community celebration where many developers come together to talk about many topics. We will have a list of speakers and workshops.",
+          speakerDescription: "Speakers in our Machine Learning track that can show real life examples of ML and why it is such an interesting topic.",
+          budgetDescription: "We can refund your travel cost and a small stipend for your stay in Munich.",
           image:
             "https://www.ihsig.com/media-intestinal-health-ihsig/ihsig767-1200x1200mm-1024x505.png"
         }}
