@@ -7,6 +7,7 @@ import ExpandableText from "./Expander";
 import { H3 } from "./Headlines";
 import { EventStatus } from "../types/EventStatus";
 import { Event } from "../types/Event";
+import { colors } from "../theme";
 
 export interface Props {
   event: Event;

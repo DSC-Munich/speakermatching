@@ -20,10 +20,7 @@ const getOrganizerData: (
   return {
     name: "Android Meetup",
     id: organizerId,
-    tags: [
-      { value: "Topic1", color: "red" },
-      { value: "Topic2", color: "blue" }
-    ],
+    tags: [{ value: "Topic1" }, { value: "Topic2" }],
     about:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     imageUrl:
@@ -132,7 +129,7 @@ const Organizer: React.FunctionComponent<{}> = () => {
       <Space height={20} />
       <Button
         title={edit ? "Save" : "Edit"}
-        backgroundColor={colors.green}
+        backgroundColor={colors.pastelGreen2}
         color={colors.white}
         onClick={() => setEdit(!edit)}
       />
@@ -148,7 +145,7 @@ const Organizer: React.FunctionComponent<{}> = () => {
       <Space height={20} />
       <Button
         title={"Add event"}
-        backgroundColor={colors.green}
+        backgroundColor={colors.pastelGreen2}
         color={colors.white}
         onClick={() => {
           console.log("Adding event");
