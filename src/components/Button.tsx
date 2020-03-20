@@ -36,7 +36,7 @@ const Container = styled.div<{
   buttonWidth?: string;
 }>`
   background-color: ${p => p.backgroundColor || "lightgray"};
-  padding: 15px;
+  padding: 10px 15px;
   border-radius: 40px;
   color: ${p => p.color || "#000"};
   text-align: center;

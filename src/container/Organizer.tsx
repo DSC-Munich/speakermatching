@@ -11,8 +11,7 @@ import styled from "styled-components";
 import { colors } from "../theme";
 import EditableTags from "../components/EditableTags";
 import Space from "../components/Space";
-import EventCard, { Props as EventCardProps } from "../components/EventCard";
-import { EventStatus } from "../types/EventStatus";
+import OrganizerEventCard, { Props as EventCardProps } from "../components/OrganizerEventCard";
 
 // TODO: Connect to firebase
 const getOrganizerData: (
@@ -42,10 +41,7 @@ const getOrganizerData: (
           totalSlots: 50
         },
         freeSlots: 5,
-        slotDuration: 30,
-        isStarred: true,
-        status: EventStatus.APPLIED,
-        onEventStatusChanged: () => {}
+        applicants: []
       },
       {
         event: {
@@ -59,10 +55,26 @@ const getOrganizerData: (
           totalSlots: 50
         },
         freeSlots: 5,
-        slotDuration: 30,
-        isStarred: true,
-        status: EventStatus.APPLIED,
-        onEventStatusChanged: () => {}
+        applicants: [
+          {
+            name: "Sasha Speaker",
+            id: "123",
+            about: "Lorem Ipsum",
+            experience: "None",
+            invitations: true,
+            topics: ["Android", "Cloud"],
+            imageUrl: "https://www.a-speakers.com/wp-content/uploads/Saskia1-Cropped-1-300x300.jpg"
+          },
+          {
+            name: "Sandra Presenter",
+            id: "321",
+            about: "Lorem Ipsum",
+            experience: "None",
+            invitations: true,
+            topics: ["Android", "Cloud"],
+            imageUrl: "https://www.a-speakers.com/wp-content/uploads/Saskia1-Cropped-1-300x300.jpg"
+          }
+        ]
       }
     ]
   };
@@ -129,7 +141,7 @@ const Organizer: React.FunctionComponent<{}> = () => {
       <Space height={20} />
       {events.map((e: EventCardProps) => (
         <>
-          <EventCard key={Math.random()} {...e} />
+          <OrganizerEventCard key={Math.random()} {...e} />
           <Space height={10} />
         </>
       ))}

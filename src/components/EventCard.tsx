@@ -45,28 +45,28 @@ const [showDescription, setShowDescription] = React.useState(false);
             {props.freeSlots} free slots, {props.slotDuration}min / slot
         </Slots>
         <ButtonBar>
-            <Button title="About us" backgroundColor="#7CD0FF" color="#FFFFFF" />
-            {
-              (() => {
-                switch(props.status) {
-                  case EventStatus.NONE: 
-                    return <Button title="Apply 🎤"
-                                    backgroundColor="#33B4FD"
-                                    color="#FFFFFF"
-                                    onClick={() => props.onEventStatusChanged(EventStatus.APPLIED)} />
-                  case EventStatus.APPLIED:
-                    return <Button title="Cancel Application 🎤"
-                                    backgroundColor="#A6A6A6"
-                                    color="#FFFFFF"
-                                    onClick={() => props.onEventStatusChanged(EventStatus.NONE)} />
-                  case EventStatus.INVITED:
-                    return <Button title="Decline Invitation"
-                                    backgroundColor="#A6A6A6"
-                                    color="#FFFFFF"
-                                    onClick={() => props.onEventStatusChanged(EventStatus.NONE)} />
-                }
-              })()
-            }
+          {
+            (() => {
+              switch(props.status) {
+                case EventStatus.NONE: 
+                  return <Button title="Apply 🎤"
+                                  backgroundColor="#33B4FD"
+                                  color="#FFFFFF"
+                                  onClick={() => props.onEventStatusChanged(EventStatus.APPLIED)} />
+                case EventStatus.APPLIED:
+                  return <Button title="Cancel Application 🎤"
+                                  backgroundColor="#A6A6A6"
+                                  color="#FFFFFF"
+                                  onClick={() => props.onEventStatusChanged(EventStatus.NONE)} />
+                case EventStatus.INVITED:
+                  return <Button title="Decline Invitation"
+                                  backgroundColor="#A6A6A6"
+                                  color="#FFFFFF"
+                                  onClick={() => props.onEventStatusChanged(EventStatus.NONE)} />
+              }
+            })()
+          }
+          <Button title="About us" backgroundColor="#7CD0FF" color="#FFFFFF" />
         </ButtonBar>
         <ExpanderButton onClick={() => setShowDescription(!showDescription)}>{showDescription? "🔼" : "🔽"}</ExpanderButton>
       </CardContent>
@@ -147,6 +147,7 @@ const ButtonBar = styled.div`
   text-align: right;
   display: flex;
   justify-content: space-between;
+  flex-direction: row-reverse;
 `;
 
 const Star = styled.div`
