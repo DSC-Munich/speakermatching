@@ -1,9 +1,10 @@
 import * as React from "react";
-import EventCard, { EventStatus } from "../components/EventCard";
+import EventCard from "../components/EventCard";
 import Layout from "../components/Layout";
 import Button from "../components/Button";
 import MenuBar from "../components/MenuBar";
 import { H2 } from "../components/Headlines";
+import { EventStatus } from "../types/EventStatus";
 
 const UpcomingEvents: React.FunctionComponent<{}> = () => {
   return (

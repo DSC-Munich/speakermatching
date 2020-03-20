@@ -5,29 +5,10 @@ import Button from "../components/Button";
 import EditableTags from "../components/EditableTags";
 import ExpandableText from "./Expander";
 import { H3 } from "./Headlines";
+import { EventStatus } from "../types/EventStatus";
+import { Event } from "../types/Event";
 
-export interface Event {
-  title: string;
-  date: Date;
-  location: string;
-  organizer: string;
-  image: string;
-  topics: string[];
-  totalSlots?: number;
-  eventDescription?: string;
-  speakerDescription?: string;
-  budgetDescription?: string;
-}
-
-export enum EventStatus {
-  NONE,
-  APPLIED,
-  INVITED,
-  ACCEPTED,
-  DECLINED
-}
-
-export interface EventCardProps {
+export interface Props {
   event: Event;
   freeSlots: number;
   slotDuration: number;
@@ -47,7 +28,7 @@ const DATE_OPTIONS = {
   second: "numeric"
 };
 
-const EventCard: React.FunctionComponent<EventCardProps> = (props) => {
+const EventCard: React.FunctionComponent<Props> = (props) => {
 const [showDescription, setShowDescription] = React.useState(false);
 
   return (
