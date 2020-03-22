@@ -92,14 +92,14 @@ const App: React.FunctionComponent<{}> = () => {
       <ButtonRow>
         <Button
           title={edit ? "Save" : "Edit"}
-          backgroundColor={colors.pastelGreen2}
+          backgroundColor={colors.green}
           color={colors.white}
           onClick={() => setEdit(!edit)}
         />
         <Link to="/upcomingevents">
           <Button
             title={"Explore Events"}
-            backgroundColor={colors.pastelRed2}
+            backgroundColor={colors.red}
             color={colors.white}
             buttonWidth={"100%"}
           />

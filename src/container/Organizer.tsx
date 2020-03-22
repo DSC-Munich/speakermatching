@@ -135,7 +135,7 @@ const Organizer: React.FunctionComponent<{}> = () => {
       <Space height={20} />
       <Button
         title={edit ? "Save" : "Edit"}
-        backgroundColor={colors.pastelGreen2}
+        backgroundColor={colors.green}
         color={colors.white}
         onClick={() => setEdit(!edit)}
       />
@@ -151,7 +151,7 @@ const Organizer: React.FunctionComponent<{}> = () => {
       <Space height={20} />
       <Button
         title={"Add event"}
-        backgroundColor={colors.pastelGreen2}
+        backgroundColor={colors.green}
         color={colors.white}
         onClick={() => {
           console.log("Adding event");
