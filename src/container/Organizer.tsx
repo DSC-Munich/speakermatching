@@ -11,7 +11,9 @@ import styled from "styled-components";
 import { colors } from "../theme";
 import EditableTags from "../components/EditableTags";
 import Space from "../components/Space";
-import OrganizerEventCard, { Props as EventCardProps } from "../components/OrganizerEventCard";
+import OrganizerEventCard, {
+  Props as EventCardProps
+} from "../components/OrganizerEventCard";
 
 // TODO: Connect to firebase
 const getOrganizerData: (
@@ -32,6 +34,7 @@ const getOrganizerData: (
           date: new Date(),
           location: "Google Munich",
           organizer: "Google",
+          organizerId: "1",
           image:
             "https://www.mch-group.com/-/media/mch-group/Images/Content/News/Blog/2017/2017-04/mch-group-live-marketing-aktivierung.jpg",
           topics: ["Android", "Kotlin"],
@@ -46,6 +49,7 @@ const getOrganizerData: (
           date: new Date(),
           location: "Google Munich",
           organizer: "Google",
+          organizerId: "1",
           image:
             "https://www.mch-group.com/-/media/mch-group/Images/Content/News/Blog/2017/2017-04/mch-group-live-marketing-aktivierung.jpg",
           topics: ["Android", "Kotlin"],
@@ -60,7 +64,8 @@ const getOrganizerData: (
             experience: "None",
             invitations: true,
             topics: ["Android", "Cloud"],
-            imageUrl: "https://www.a-speakers.com/wp-content/uploads/Saskia1-Cropped-1-300x300.jpg"
+            imageUrl:
+              "https://www.a-speakers.com/wp-content/uploads/Saskia1-Cropped-1-300x300.jpg"
           },
           {
             name: "Sandra Presenter",
@@ -69,7 +74,8 @@ const getOrganizerData: (
             experience: "None",
             invitations: true,
             topics: ["Android", "Cloud"],
-            imageUrl: "https://www.a-speakers.com/wp-content/uploads/Saskia1-Cropped-1-300x300.jpg"
+            imageUrl:
+              "https://www.a-speakers.com/wp-content/uploads/Saskia1-Cropped-1-300x300.jpg"
           }
         ]
       }
@@ -84,8 +90,8 @@ const setOrganizerData: (speakerData: any) => any = speakerId => {
 
 const Organizer: React.FunctionComponent<{}> = () => {
   const [edit, setEdit] = useState(false);
-  const [name, setName] = useState();
-  const [about, setAbout] = useState();
+  const [name, setName] = useState("");
+  const [about, setAbout] = useState("");
   const [events, setEvents]: [EventCardProps[], any] = useState([]);
   const [tags, setTags]: [{ value: string; color: string }[], any] = useState(
     []
@@ -139,7 +145,7 @@ const Organizer: React.FunctionComponent<{}> = () => {
       {events.map((e: EventCardProps) => (
         <>
           <OrganizerEventCard key={Math.random()} {...e} />
-          <Space height={10} />
+          <Space height={10} key={Math.random()} />
         </>
       ))}
       <Space height={20} />

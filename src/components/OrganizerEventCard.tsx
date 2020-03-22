@@ -8,6 +8,9 @@ import { H3 } from "./Headlines";
 import { EventStatus } from "../types/EventStatus";
 import { Event } from "../types/Event";
 import { Speaker } from "../types/Speaker";
+import { useHistory } from "react-router-dom";
+import { useState } from "react";
+import { colors } from "../theme";
 
 export interface Props {
   event: Event;
@@ -25,41 +28,72 @@ const DATE_OPTIONS = {
   second: "numeric"
 };
 
-const OrganizerEventCard: React.FunctionComponent<Props> = (props) => {
+const OrganizerEventCard: React.FunctionComponent<Props> = props => {
+  const history = useHistory();
+  const [invited, setInvited]: [string[], any] = useState([]);
+  console.log(invited);
+
   return (
     <Card>
       <CardImage src={props.event.image} />
       <CardContent>
         <Title>{props.event.title}</Title>
-        <Date>{new Intl.DateTimeFormat('default', DATE_OPTIONS).format(props.event.date)}</Date>
+        <Date>
+          {new Intl.DateTimeFormat("default", DATE_OPTIONS).format(
+            props.event.date
+          )}
+        </Date>
         <Location>{props.event.location}</Location>
         <Slots>
-          {props.event.totalSlots? `${props.event.totalSlots - props.freeSlots} / ${props.event.totalSlots} slots filled` : ""}
+          {props.event.totalSlots
+            ? `${props.event.totalSlots - props.freeSlots} / ${
+                props.event.totalSlots
+              } slots filled`
+            : ""}
         </Slots>
         <ButtonBar>
-          <Button title="edit info" backgroundColor="#7CD0FF" color="#FFFFFF" />
+          <Button title="Edit info" backgroundColor="#7CD0FF" color="#FFFFFF" />
         </ButtonBar>
       </CardContent>
       <SpeakerContainer>
-        {
-          props.applicants.map(a =>
-            <SpeakerCard key={a.id}>
-              <ProfilePic image={a.imageUrl}/>
-              <div>
-                <SpeakerName>{a.name}</SpeakerName>
-                <ButtonBar>
-                  <Button title="Invite" backgroundColor="#08BA4F" color="#FFFFFF" />
-                  <Button title="About me 🎤" backgroundColor="#7E7E7E" color="#FFFFFF" />
-                </ButtonBar>
-              </div>
-            </SpeakerCard>)
-        }
+        {props.applicants.map(a => (
+          <SpeakerCard key={a.id}>
+            <ProfilePic image={a.imageUrl} />
+            <div>
+              <SpeakerName>{a.name}</SpeakerName>
+              <ButtonBar>
+                <Button
+                  title={invited.includes(a.id) ? "Invited" : "Invite"}
+                  backgroundColor={
+                    invited.includes(a.id) ? colors.pastelGreen1 : "#08BA4F"
+                  }
+                  color="#FFFFFF"
+                  onClick={() => setInvited([a.id, ...invited])}
+                />
+                <Button
+                  title="About me"
+                  icon="🎤"
+                  backgroundColor="#7E7E7E"
+                  color="#FFFFFF"
+                  onClick={() => history.push("/speaker/" + a.id)}
+                />
+              </ButtonBar>
+            </div>
+          </SpeakerCard>
+        ))}
       </SpeakerContainer>
-    </Card>);
+    </Card>
+  );
+};
+
+OrganizerEventCard.propTypes = {
+  applicants: PropTypes.any,
+  event: PropTypes.any,
+  freeSlots: PropTypes.any
 };
 
 const Card = styled.div`
-  background-color: #F4F4F4;
+  background-color: #f4f4f4;
   border-radius: 14px;
   margin: 5px;
   margin-top: 25px;
@@ -130,7 +164,7 @@ const SpeakerCard = styled.div`
   }
 `;
 
-const ProfilePic = styled.div<{image: string}>`
+const ProfilePic = styled.div<{ image: string }>`
   height: 60px;
   width: 60px;
   border-radius: 30px;

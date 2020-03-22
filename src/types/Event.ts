@@ -3,6 +3,7 @@ export interface Event {
   date: Date;
   location: string;
   organizer: string;
+  organizerId: string;
   image: string;
   topics: string[];
   totalSlots?: number;
