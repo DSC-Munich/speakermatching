@@ -43,7 +43,7 @@ const stringToPastelColor = (str: string) => {
     seed = str.charCodeAt(i) + ((seed << 5) - seed);
   }
 
-  seed = (Math.abs(seed) % 10) / 10;
+  seed = (Math.abs(seed) % 20) / 20;
   return (
     "hsl(" +
     360 * seed +

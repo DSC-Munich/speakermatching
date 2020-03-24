@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Layout from "../components/Layout";
 import { H1, H2 } from "../components/Headlines";
 import Description from "../components/Description";
@@ -18,15 +18,12 @@ const getSpeakerData: (speakerId: string) => any = speakerId => {
     name: "Saskia Speaker",
     id: speakerId,
     about:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Hey:) I'm Saskia, an ML professional working at MyCompany. I really like spreading my passion about ML. I have a dog and two cats, with whom I often practise my talks.",
     experience:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      "I've been invited to Google I/O, I am also often speaking at regional communities such as the DSC Munich. Recently, I have started a YouTube channel for ML.",
     imageUrl:
       "https://imgix.bustle.com/uploads/image/2018/5/9/fa2d3d8d-9b6c-4df4-af95-f4fa760e3c5c-2t4a9501.JPG?w=970&h=546&fit=crop&crop=faces&auto=format&q=70",
-    topics: [
-      { value: "Topic1", color: "red" },
-      { value: "Topic2", color: "blue" }
-    ],
+    topics: [{ value: "ML" }, { value: "Android" }],
     invitations: true
   };
 };
@@ -38,9 +35,9 @@ const setSpeakerData: (speakerData: any) => any = speakerId => {
 
 const App: React.FunctionComponent<{}> = () => {
   const [edit, setEdit] = useState(false);
-  const [name, setName] = useState();
-  const [about, setAbout] = useState();
-  const [experience, setExperience] = useState();
+  const [name, setName] = useState("");
+  const [about, setAbout] = useState("");
+  const [experience, setExperience] = useState("");
   const [invitations, setInvitations] = useState();
   const [topics, setTopics]: [
     { value: string; color: string }[],
@@ -88,19 +85,36 @@ const App: React.FunctionComponent<{}> = () => {
         setDescription={setExperience}
       />
 
-      <H2>I&apos;m condifent to speak about these topics:</H2>
+      <H2>I&apos;m confident to speak about these topics:</H2>
       <EditableTags tags={topics} edit={edit} setTags={setTopics} />
 
       <Space height={30} />
-      <Button
-        title={edit ? "Save" : "Edit"}
-        backgroundColor={colors.pastelGreen2}
-        color={colors.white}
-        onClick={() => setEdit(!edit)}
-        buttonWidth={"50%"}
-      />
+      <ButtonRow>
+        <Button
+          title={edit ? "Save" : "Edit"}
+          backgroundColor={colors.green}
+          color={colors.white}
+          onClick={() => setEdit(!edit)}
+        />
+        <Link to="/upcomingevents">
+          <Button
+            title={"Explore Events"}
+            backgroundColor={colors.red}
+            color={colors.white}
+            buttonWidth={"100%"}
+          />
+        </Link>
+      </ButtonRow>
     </Layout>
   );
 };
+
+const ButtonRow = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: stretch;
+  align-items: stretch;
+  grid-gap: 20px;
+`;
 
 export default App;

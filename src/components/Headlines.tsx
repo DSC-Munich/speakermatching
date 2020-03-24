@@ -48,6 +48,14 @@ export const H2 = styled.h2<{ color?: string }>`
   margin: 5px 0;
 `;
 
+export const H3 = styled.h3<{ color?: string}>`
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  color: ${p => p.color};
+  margin: 10px 0px 0px 0px;
+`;
+
 const StyledInput = styled.input`
   font-size: ${fontSizes.large};
   color: ${p => p.color};
@@ -57,4 +65,4 @@ const StyledInput = styled.input`
   padding: 10px;
 `;
 
-export default { H1, H2 };
+export default { H1, H2, H3 };
