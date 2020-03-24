@@ -71,14 +71,15 @@ const getEventOrganizer = (organizerRef: any): any => {
     });
 };
 
-const getSpeaker = (speakerRef: any): any => {
+const getSpeaker = (speakerId: any): any => {
+  const speakerRef = db.doc("speakers/" + speakerId);
   speakerRef
     .get()
     .then((speaker: any) => {
       if (speaker.exists) {
-        return speaker;
+        return speaker.data();
       } else {
-        console.log("No such organizer!");
+        console.log("No such speaker!");
       }
     })
     .catch((error: any) => {

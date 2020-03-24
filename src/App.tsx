@@ -5,10 +5,11 @@ import Organizer from "./container/Organizer";
 import Speaker from "./container/Speaker";
 import UpcomingEvents from "./container/UpcomingEvents";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import db from "./services/speaker";
 
 const App = () => {
   useEffect(() => {
-    console.log(db.getEvents());
+    console.log(db.getSpeaker("xSwOTU2lVasmNiQOyRUY"));
   }, []);
 
   return (
