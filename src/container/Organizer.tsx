@@ -14,78 +14,19 @@ import Space from "../components/Space";
 import OrganizerEventCard, {
   Props as EventCardProps
 } from "../components/OrganizerEventCard";
+import db from "../services/firebase";
 
-// TODO: Connect to firebase
 const getOrganizerData: (
   organizerId: string
-) => { [key: string]: any; events: EventCardProps[] } = organizerId => {
-  return {
-    name: "Android Meetup",
-    id: organizerId,
-    tags: [{ value: "Topic1" }, { value: "Topic2" }],
-    about:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    imageUrl:
-      "https://www.mch-group.com/-/media/mch-group/Images/Content/News/Blog/2017/2017-04/mch-group-live-marketing-aktivierung.jpg",
-    events: [
-      {
-        event: {
-          title: "Dev Fest",
-          date: new Date(),
-          location: "Google Munich",
-          organizer: "Google",
-          organizerId: "1",
-          image:
-            "https://www.mch-group.com/-/media/mch-group/Images/Content/News/Blog/2017/2017-04/mch-group-live-marketing-aktivierung.jpg",
-          topics: ["Android", "Kotlin"],
-          totalSlots: 50
-        },
-        freeSlots: 5,
-        applicants: []
-      },
-      {
-        event: {
-          title: "Dev Fest",
-          date: new Date(),
-          location: "Google Munich",
-          organizer: "Google",
-          organizerId: "1",
-          image:
-            "https://www.mch-group.com/-/media/mch-group/Images/Content/News/Blog/2017/2017-04/mch-group-live-marketing-aktivierung.jpg",
-          topics: ["Android", "Kotlin"],
-          totalSlots: 50
-        },
-        freeSlots: 5,
-        applicants: [
-          {
-            name: "Sasha Speaker",
-            id: "123",
-            about: "Lorem Ipsum",
-            experience: "None",
-            invitations: true,
-            topics: ["Android", "Cloud"],
-            imageUrl:
-              "https://www.a-speakers.com/wp-content/uploads/Saskia1-Cropped-1-300x300.jpg"
-          },
-          {
-            name: "Sandra Presenter",
-            id: "321",
-            about: "Lorem Ipsum",
-            experience: "None",
-            invitations: true,
-            topics: ["Android", "Cloud"],
-            imageUrl:
-              "https://www.a-speakers.com/wp-content/uploads/Saskia1-Cropped-1-300x300.jpg"
-          }
-        ]
-      }
-    ]
-  };
+) => Promise<{
+  [key: string]: any;
+  events: EventCardProps[];
+}> = async organizerId => {
+  return await db.getOrganizer(organizerId);
 };
 
-// TODO: Connect to firebase
-const setOrganizerData: (speakerData: any) => any = speakerId => {
-  return;
+const setOrganizerData: (organizerData: any) => any = organizerData => {
+  db.createOrganizer(organizerData);
 };
 
 const Organizer: React.FunctionComponent<{}> = () => {

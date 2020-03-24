@@ -5,6 +5,15 @@ import Button from "../components/Button";
 import MenuBar from "../components/MenuBar";
 import { H2 } from "../components/Headlines";
 import { EventStatus } from "../types/EventStatus";
+import db from "../services/firebase";
+
+const getEventsData: () => any = () => {
+  return db.getEvents();
+};
+
+const setEventsData: (eventData: any) => any = eventData => {
+  db.createEvent(eventData);
+};
 
 const UpcomingEvents: React.FunctionComponent<{}> = () => {
   return (

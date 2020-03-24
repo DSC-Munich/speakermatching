@@ -11,26 +11,15 @@ import styled from "styled-components";
 import { colors } from "../theme";
 import EditableTags from "../components/EditableTags";
 import Space from "../components/Space";
+import db from "../services/firebase";
 
 // TODO: Connect to firebase
-const getSpeakerData: (speakerId: string) => any = speakerId => {
-  return {
-    name: "Saskia Speaker",
-    id: speakerId,
-    about:
-      "Hey:) I'm Saskia, an ML professional working at MyCompany. I really like spreading my passion about ML. I have a dog and two cats, with whom I often practise my talks.",
-    experience:
-      "I've been invited to Google I/O, I am also often speaking at regional communities such as the DSC Munich. Recently, I have started a YouTube channel for ML.",
-    imageUrl:
-      "https://imgix.bustle.com/uploads/image/2018/5/9/fa2d3d8d-9b6c-4df4-af95-f4fa760e3c5c-2t4a9501.JPG?w=970&h=546&fit=crop&crop=faces&auto=format&q=70",
-    topics: [{ value: "ML" }, { value: "Android" }],
-    invitations: true
-  };
+const getSpeakerData: (speakerId: string) => Promise<any> = async speakerId => {
+  return await db.getSpeaker(speakerId);
 };
 
-// TODO: Connect to firebase
-const setSpeakerData: (speakerData: any) => any = speakerId => {
-  return;
+const setSpeakerData: (speakerData: any) => any = speakerData => {
+  db.createSpeaker(speakerData);
 };
 
 const App: React.FunctionComponent<{}> = () => {
