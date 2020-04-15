@@ -40,11 +40,11 @@ const Inner = styled.div`
 `;
 
 const Header = styled.div<{ backgroundImage: string }>`
-  height: 300px;
+  height: 500px;
   background-color: ${colors.gray};
   background-image: url(${p => p.backgroundImage});
   background-size: cover;
-  background-position: center;
+  background-position: top center;
   background-repeat: no-repeat;
 `;
 

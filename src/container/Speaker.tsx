@@ -15,7 +15,9 @@ import db from "../services/firebase";
 
 // TODO: Connect to firebase
 const getSpeakerData: (speakerId: string) => Promise<any> = async speakerId => {
-  return await db.getSpeaker(speakerId);
+  const speakerData = await db.getSpeaker(speakerId);
+  console.log("Speaker data", speakerData);
+  return speakerData;
 };
 
 const setSpeakerData: (speakerData: any) => any = speakerData => {
@@ -38,21 +40,24 @@ const App: React.FunctionComponent<{}> = () => {
 
   // Run once once component did mount
   useEffect(() => {
-    const {
-      name = undefined,
-      about = undefined,
-      experience = undefined,
-      topics = undefined,
-      imageUrl = undefined,
-      invitations = undefined
-    } = speakerId ? getSpeakerData(speakerId) : {};
+    (async () => {
+      const speakerData = speakerId ? await getSpeakerData(speakerId) : {};
+      const {
+        name = undefined,
+        about = undefined,
+        experience = undefined,
+        topics = undefined,
+        imageUrl = undefined,
+        invitations = undefined
+      } = speakerData || ({} as any);
 
-    setName(name);
-    setAbout(about);
-    setExperience(experience);
-    setTopics(topics);
-    setImageUrl(imageUrl);
-    setInvitations(invitations);
+      setName(name);
+      setAbout(about);
+      setExperience(experience);
+      setTopics(topics);
+      setImageUrl(imageUrl);
+      setInvitations(invitations);
+    })();
   }, []);
 
   return (

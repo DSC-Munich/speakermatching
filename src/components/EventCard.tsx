@@ -97,6 +97,7 @@ const EventCard: React.FunctionComponent<Props> = props => {
                 );
             }
           })()}
+          {console.log("OrganizerId", props.event.organizerId)}
           <Button
             title="About us"
             backgroundColor="#7CD0FF"

@@ -38,11 +38,38 @@ const createSpeaker = (speakerData: any): void => {
   });
 };
 
-const getOrganizer = async (organizerId: any): any => {
+const getOrganizer = async (organizerId: any): Promise<any> => {
   try {
     const organizerRef = db.doc("organizers/" + organizerId);
     const organizer = await organizerRef.get();
-    return organizer.data();
+    const od = (await organizer.data()) as any;
+
+    // Fetch events
+    od.events = await Promise.all(
+      od.events
+        ? od.events.map(async (e: any) => {
+            const ed = await e.get();
+            return await ed.data();
+          })
+        : []
+    );
+
+    // Fetch speaker
+    await Promise.all(
+      od.events.map(async (e: any) => {
+        e.applicants = await Promise.all(
+          e.applicants
+            ? e.applicants.map(async (a: any) => {
+                const ad = await a.get();
+                const doc = await ad.data();
+                doc.id = ad.id;
+                return doc;
+              })
+            : []
+        );
+      })
+    );
+    return od;
   } catch (error) {
     console.log("Error getting organizer: ", error);
   }
@@ -52,22 +79,30 @@ const getSpeaker = async (speakerId: any): Promise<any> => {
   try {
     const speakerRef = db.doc("speakers/" + speakerId);
     const speaker = await speakerRef.get();
+    console.log("Speaker firebase", speaker);
     return speaker.data();
   } catch (error) {
     console.log("Error getting speaker: ", error);
   }
 };
 
-const getEvents = (): any[] => {
+const getEvents = async (): Promise<any> => {
   const events: any[] = [];
 
-  db.collection("events")
-    .get()
-    .then(querySnapshot => {
-      querySnapshot.forEach(event => {
-        events.push(event.data());
-      });
-    });
+  const querySnapshot = await db.collection("events").get();
+  console.log("Event!");
+  querySnapshot.forEach(event => {
+    const ed = event.data();
+    events.push(ed);
+  });
+
+  await Promise.all(events);
+
+  await Promise.all(
+    events.map(async e => {
+      e.organizerId = e.organizerId && (await e.organizerId.get()).id;
+    })
+  );
 
   return events;
 };

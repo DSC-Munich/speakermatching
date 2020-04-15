@@ -39,7 +39,7 @@ const stringToColor = function(str: string) {
 
 const stringToPastelColor = (str: string) => {
   let seed = 0;
-  for (let i = 0; i < str.length; i++) {
+  for (let i = 0; i < (str ? str.length : 0); i++) {
     seed = str.charCodeAt(i) + ((seed << 5) - seed);
   }
 

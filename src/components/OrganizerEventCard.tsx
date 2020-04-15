@@ -31,18 +31,20 @@ const DATE_OPTIONS = {
 const OrganizerEventCard: React.FunctionComponent<Props> = props => {
   const history = useHistory();
   const [invited, setInvited]: [string[], any] = useState([]);
-  console.log(invited);
 
   return (
     <Card>
       <CardImage src={props.event.image} />
       <CardContent>
         <Title>{props.event.title}</Title>
-        <Date>
-          {new Intl.DateTimeFormat("default", DATE_OPTIONS).format(
-            props.event.date
-          )}
-        </Date>
+        {props.event && props.event.date && !isNaN(props.event.date.getTime()) && (
+          <Date>
+            {console.log("Time datee", props.event.date.getTime() === NaN)}
+            {new Intl.DateTimeFormat("default", DATE_OPTIONS).format(
+              props.event.date
+            )}
+          </Date>
+        )}
         <Location>{props.event.location}</Location>
         <Slots>
           {props.event.totalSlots
@@ -57,7 +59,7 @@ const OrganizerEventCard: React.FunctionComponent<Props> = props => {
       </CardContent>
       <SpeakerContainer>
         {props.applicants.map(a => (
-          <SpeakerCard key={a.id}>
+          <SpeakerCard key={Math.random()}>
             <ProfilePic image={a.imageUrl} />
             <div>
               <SpeakerName>{a.name}</SpeakerName>

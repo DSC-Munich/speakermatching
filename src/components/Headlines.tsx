@@ -48,7 +48,7 @@ export const H2 = styled.h2<{ color?: string }>`
   margin: 5px 0;
 `;
 
-export const H3 = styled.h3<{ color?: string}>`
+export const H3 = styled.h3<{ color?: string }>`
   font-style: normal;
   font-weight: 600;
   font-size: 16px;

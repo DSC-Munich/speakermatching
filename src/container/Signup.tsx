@@ -19,8 +19,8 @@ class SignUp extends React.Component {
   render() {
     return (
       <div>
-        <Link to="/speaker/1">I&apos;m a speaker</Link>
-        <Link to="/organizer/1">I&apos;m an organizer</Link>
+        <Link to="/speaker/xSwOTU2lVasmNiQOyRUY">I&apos;m a speaker</Link>
+        <Link to="/organizer/7EcIbJHBAXHLdMuNbIB6">I&apos;m an organizer</Link>
       </div>
     );
   }
