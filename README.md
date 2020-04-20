@@ -1,4 +1,7 @@
 # About the project #
+## Project video
+https://youtu.be/Dagl4SDsZDM
+
 ## What's this project about?
 This is our contribution to the DSC Solution Challenge: We are four students from the TU Munich. We founded the DSC Munich last year, with the mission to create a community from students for students where we can learn about exciting topics together. However, it is difficult for community organizers to find speakers for their events. Likewise, after talking to some speakers, they also can't find fitting events for their talks easily. 
 
