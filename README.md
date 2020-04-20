@@ -24,7 +24,9 @@ We collected some feedback and these are our next steps towards an even more eff
 * Nicolas G., Software Engineer and one of our previous speakers
 
 # How to run the code:
-In the project directory, you can run:
+We have published it here: https://dsc-solution-challenge.firebaseapp.com
+
+If you want to run it locally, in the project directory, run:
 
 ### `yarn start`
 
